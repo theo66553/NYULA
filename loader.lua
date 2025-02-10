@@ -239,43 +239,13 @@ function Lib:Create(options)
 	return options;
 end;
 
-local Loader = Lib:Create({ accent = Color3.fromRGB(255, 119, 119) })
-
-Loader:creategame({
-    name = "Fallen Survival",
-    image = "rbxassetid://133689243432559",
-    status = "undetected",
-    call = function(v)
-        repeat task.wait() until game:IsLoaded()
-        
-        local NYULA = ([[
-            script_key = "%s"
-            loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2e2579a0a77d8b5d06182e046ff22249.lua"))()
-        ]]):format(script_key)
-        
-        queue_on_teleport(NYULA)
-        
-        local message_response = messagebox('Join Server After Pressing Ok!', 'NYULA.WTF', 1)
-        
-        if message_response == 1 then
-            for _ = 1, 1 do
-                if injection_finish then break end
-                
-                for _, text in ipairs(texts) do
-                    InjectButton.Text = text
-                    task.wait(0.5)
-                end
-            end
-            
-            if not injection_finish then
-                for _, v in pairs(Loader:GetDescendants()) do
-                    v:Remove()
-                end
-                
-                Cursor:Remove()
-                CursorOutline:Remove()
-                UserInputService.MouseIconEnabled = true
-            end
-        end
-    end
-})
+local Loader = Lib:Create({accent = Color3.fromRGB(255, 119, 119)});
+Loader:creategame({name = "Fallen Survival", image = "rbxassetid://133689243432559", status = "undetected", call = function(v)
+	local NYULA = [[
+	repeat task.wait() until game:IsLoaded()
+	script_key = "]] .. script_key .. [["
+	loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/2e2579a0a77d8b5d06182e046ff22249.lua"))()
+	]]
+	queue_on_teleport(NYULA)
+    warn("LOADED : JOIN SERVER!")
+end});
